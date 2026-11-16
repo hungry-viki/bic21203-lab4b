@@ -32,4 +32,5 @@ Q3 (`jquery-dom.html` output)
 
 ## Explanation
 **Advantage of Native JavaScript:** It built directly into modern browsers, removing the need to load an external library, which improves page loading speed and performance.
+
 **When a project may still use jQuery:** Existing legacy enterprise projects that were built 10 years ago, they often still rely on jQuery because rewriting the entire codebase to native JavaScript would be too expensive and time-consuming.
