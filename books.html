@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 4b - Question 2</title>
+</head>
+<body>
+    <h1>Book Collection Data</h1>
+    <div id="output"></div>
+
+    <script>
+        async function fetchBooks() {
+            try {
+                // Fetch the JSON file from the local server
+                const response = await fetch('books.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const books = data.books;
+                const outputDiv = document.getElementById('output');
+
+                // (a) Title of the first book
+                const titleFirst = document.createElement('p');
+                titleFirst.textContent = `First book title: ${books[0].title}`;
+                outputDiv.appendChild(titleFirst);
+
+                // (b) Author of the second book
+                const authorSecond = document.createElement('p');
+                authorSecond.textContent = `Second book author: ${books[1].author}`;
+                outputDiv.appendChild(authorSecond);
+
+                // (c) Genres clearly grouped by book title
+                books.forEach(book => {
+                    const genreList = document.createElement('p');
+                    genreList.textContent = `${book.title} — ${book.genres.join(', ')}`;
+                    outputDiv.appendChild(genreList);
+                });
+
+            } catch (error) {
+                // Handle invalid JSON or failed requests
+                document.getElementById('output').textContent = "Error loading data: Please ensure you are running this file through a local server (like Live Server) and not directly from your hard drive.";
+                console.error("Fetch error:", error);
+            }
+        }
+
+        fetchBooks();
+    </script>
+</body>
+</html>
